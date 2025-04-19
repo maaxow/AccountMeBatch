@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: account-me-batch
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+  elasticsearch:
+    uris: http://localhost:9200
+    username: AccountMeBatch
+    password: 123456
+account-me:
+  directory:
+    input: ./input
+    output: ./output
