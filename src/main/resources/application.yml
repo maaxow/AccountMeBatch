@@ -1,4 +1,7 @@
 spring:
+  batch:
+    job:
+      enabled: true
   application:
     name: account-me-batch
   datasource:
@@ -8,7 +11,8 @@ spring:
     uris: http://localhost:9200
     username: AccountMeBatch
     password: 123456
+
 account-me:
   directory:
-    input: ./input
+    input-pattern: input/*.pdf
     output: ./output

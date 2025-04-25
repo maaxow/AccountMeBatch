@@ -1,16 +1,20 @@
 package fr.maaxow.accountMeBatch.reader;
 
-import org.springframework.batch.item.file.MultiResourceItemReader;
-import org.springframework.core.io.ClassPathResource;
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.batch.item.file.ResourcesItemReader;
 import org.springframework.core.io.Resource;
 
-public class InputFileReader extends MultiResourceItemReader<String> {
+import java.util.Arrays;
 
-    public InputFileReader(String inputDirectory) {
+public class InputFileReader extends ResourcesItemReader {
+
+    public static Logger LOGGER = (Logger) LoggerFactory.getLogger(InputFileReader.class);
+
+    public InputFileReader(Resource[] resources) {
         super();
-        Resource resource = new ClassPathResource(inputDirectory);
-        Resource[] resources = new Resource[] {resource};
         setResources(resources);
-        System.out.println("########" + inputDirectory);
+        Arrays.stream(resources).toList().stream().map(Resource::getFilename).forEach(System.out::println);
+        LOGGER.info("Found " + resources.length + " files");
     }
 }
